@@ -14,7 +14,7 @@ print "  switch (\$country) {\n";
 
 while ($str = <FILE>) {
   $str =~ s!\s*$!!; 
-  my ($country,$region,$timezone) = split(",",$str);
+  my ($country,$region,$timezone) = split("\t",$str);
   #print $country . "," . $region . "," . $timezone . "\n";
   if ($country ne $old_country) {
     if ($old_region ne "") {
@@ -29,7 +29,7 @@ while ($str = <FILE>) {
   if ($region ne "") {
     print "  case " . qq(") . $region . qq(") . ":\n  ";
   }
-  print qq(    \$timezone = ") . $timezone . qq(") . ";\n";
+  print qq(    \$timezone = ) . $timezone  . ";\n";
   if ($region ne "") {
     print "      break;\n";
   } else {
